@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Mood-Tracker</title>
+<link rel="stylesheet" href="moodTracker.css">
+</head>
+
+<body>
+    <section id="home">
+        <h2>Today's Mood</h2>
+        <!-- NAV (responsive) -->
+        <div class="nav">
+            <div class="container">
+                <button class="btn"> <a href="#home">Home</a></button>
+                <button class="btn"><a href="#history">My history</a></button>
+                <svg class="outline" overflow="visible" width="100%" height="60" viewBox="0 0 400 60"
+                    preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="rect" pathLength="100" x="0" y="0" width="400" height="60" fill="transparent"
+                        stroke-width="5"></rect>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Mood + time -->
+        <div id="mood-tracker">
+            <div id="mood">
+                <ul>
+                    <li data-mood="amazing">😎</li>
+                    <li data-mood="good">😁</li>
+                    <li data-mood="okay">😑</li>
+                    <li data-mood="sad">😞</li>
+                    <li data-mood="awful">😡</li>
+                </ul>
+            </div>
+            <div id="time">00:00</div>
+        </div>
+
+        <!-- Journal + button -->
+        <div id="write">
+            <div class="uiverse-pixel-input-wrapper">
+                <label class="uiverse-pixel-label" for="journal">JOURNAL</label>
+                <input placeholder="what's the reason behind this mood? write the actions...."
+                    class="uiverse-pixel-input" id="journal" type="text" />
+            </div>
+
+            <button type = "submit" class="doodle-btn">
+                <span class="btn-text">SAVE</span>
+                <div class="icon-1">
+                    <svg viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20,0 Q15,20 20,45" fill="none" stroke="#1e1e24" stroke-width="2.5"
+                            stroke-linecap="round"></path>
+                        <path d="M20,45 l5,10 10,2 -7,8 2,10 -10,-6 -10,6 2,-10 -7,-8 10,-2 z" fill="#ffde59"
+                            stroke="#1e1e24" stroke-width="3" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="icon-2">
+                    <svg viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20,0 Q25,25 20,45" fill="none" stroke="#1e1e24" stroke-width="2.5"
+                            stroke-linecap="round"></path>
+                        <path d="M20,65 L10,55 A 7 7 0 0 1 20,45 A 7 7 0 0 1 30,55 Z" fill="#ff8ba7" stroke="#1e1e24"
+                            stroke-width="3" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="icon-3">
+                    <svg viewBox="0 0 40 80" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20,0 Q15,25 20,50" fill="none" stroke="#1e1e24" stroke-width="2.5"
+                            stroke-linecap="round"></path>
+                        <path d="M20,45 Q20,60 10,60 Q20,60 20,75 Q20,60 30,60 Q20,60 20,45 Z" fill="#8ef0ce"
+                            stroke="#1e1e24" stroke-width="3" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </button>
+        </div>
+    </section>
+<section id="history">
+    <h2>MY HISTORY</h2>
+    <div id="saved">
+        <ul>
+    <li><span class="date">DATE</span> <span class="mood">Mood</span> <span class="time">TIME</span></li>
+
+        </ul>
+    </div>
+</section>
+    <script src="moodTracker.js">
+       </script>
+</body>
+
+</html>

@@ -729,7 +729,6 @@
     display: none !important;
 }
 
-
 .modal-content {
     background: white;
     padding: 25px;
@@ -737,9 +736,7 @@
     width: 300px;
     position: relative;
 }
-.hidden {
-    display: none !important;
-}
+
 /* From Uiverse.io by peter_6222 */
 @import url("s://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 

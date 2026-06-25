@@ -28,11 +28,11 @@
         <div id="mood-tracker">
             <div id="mood">
                 <ul>
-                    <li data-mood="amazing">😎</li>
-                    <li data-mood="good">😁</li>
-                    <li data-mood="okay">😑</li>
-                    <li data-mood="sad">😞</li>
-                    <li data-mood="awful">😡</li>
+                    <li data-mood="😎">😎</li>
+                    <li data-mood="😁">😁</li>
+                    <li data-mood="😑">😑</li>
+                    <li data-mood="😞">😞</li>
+                    <li data-mood="😡">😡</li>
                 </ul>
             </div>
             <div id="time">00:00</div>
@@ -77,11 +77,30 @@
     </section>
 <section id="history">
     <h2>MY HISTORY</h2>
-    <div id="saved">
-        <ul>
-    <li><span class="date">DATE</span> <span class="mood">Mood</span> <span class="time">TIME</span></li>
 
-        </ul>
+    <div id="saved">
+        <ul></ul>
+    </div>
+    <div id="journalModal" class="hidden">
+    
+        <div class="modal-content">
+    
+            <!-- From Uiverse.io by peter_6222 -->
+            
+            <button id="closeModal" class="mario-block-btn">
+                <span class="close-btn">X</span>
+                <div class="coin"></div>
+            </button>
+
+    
+            <h2 id="modalMood"></h2>
+    
+            <p id="modalDate"></p>
+    
+            <p id="modalText"></p>
+    
+        </div>
+    
     </div>
 </section>
     <script src="moodTracker.js">

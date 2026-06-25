@@ -26,35 +26,99 @@ moods.forEach(mood => {
         mood.style.background = "lightblue";
 
         selectedMood = mood.dataset.mood;
-        console.log(selectedMood)
+        
 });
 });
 //////////////////////////JOURNAL////////////////////////////
 const journal = document.getElementById('journal');
 const btn = document.querySelector('.doodle-btn');
+btn.addEventListener("click", function(){
 
-btn.addEventListener("click", function () {
-
-    if (journal.value.trim() === "" || !selectedMood) {
+    if(journal.value.trim() === "" || !selectedMood){
         alert("HEY! U forgot to reflect fully.");
         return;
     }
+
 ////////////////////MY HISTORY/////////////////////////////////////
-const history = document.getElementById('saved');
-const date = document.querySelector('li span .date');
-const mood = document.getElementsByClassName('mood');
-const time = document.getElementsByClassName('name');
+const historyList = document.querySelector("#saved ul");
+function padZero(number){
+    return number < 10 ? `0${number}` : number;
+}
+const now = new Date();
 
-const now = new Date()
-const day = now.getDate()
-const month = now.getMonth();
+const day = padZero(now.getDate());
+const month = padZero(now.getMonth()+1);
 const year = now.getFullYear();
-const hour = now.getHours();
-const min = now.getMinutes();
-const sec = now.getSeconds();
-time.textContent = setTime();
-date.textContent = `${day}/${month}/${year}`;
-mood.textContent = selectedMood;
 
-    alert("Saved!");
+const hour = padZero(now.getHours());
+const min = padZero(now.getMinutes());
+const sec = padZero(now.getSeconds());
+
+
+    // create new li
+    const entry = document.createElement("li");
+
+
+    entry.innerHTML = `
+        <span class="date">
+            ${day}/${month}/${year}
+        </span>
+
+        <span class="mood">
+            ${selectedMood}
+        </span>
+
+        <span class="time">
+            ${hour}:${min}:${sec}
+        </span>
+    `;
+
+// save journal inside the li
+entry.dataset.journal = journal.value;
+
+console.log(entry.dataset.journal)
+    historyList.prepend(entry);
+
+historyList.addEventListener("click", function(e){
+
+    if(e.target.classList.contains("mood")){
+
+
+        const parent = e.target.parentElement;
+
+
+        const writtenJournal = parent.dataset.journal;
+
+
+        const date = parent.querySelector(".date").textContent;
+
+        const mood = parent.querySelector(".mood").textContent;
+
+
+        document.getElementById("modalMood").textContent = mood;
+
+        document.getElementById("modalDate").textContent = date;
+
+        document.getElementById("modalText").textContent = writtenJournal;
+
+
+
+        document
+        .getElementById("journalModal")
+        .classList.remove("hidden");
+
+    }
+
+});
+alert("Saved!");
+/////////////////close button//////////////////////////
+const closeBtn = document.querySelector("#closeModal");
+const modal = document.querySelector("#journalModal");
+
+
+closeBtn.onclick = function(){
+
+    modal.classList.add("hidden");
+
+};
 });

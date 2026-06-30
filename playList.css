@@ -1,0 +1,247 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1e1c22;
+            font-family: 'Garamond', 'Times New Roman', serif;
+            padding: 0.75rem;
+        }
+
+        /* ----- card / playlist surface ----- */
+        .playlist-card {
+            background: #2b2933;
+            background-image: radial-gradient(circle at 20% 30%, #3d3a47 0%, #1f1d26 100%);
+            padding: 1.2rem 1rem 1.8rem;
+            border-radius: 2rem 2rem 1.6rem 1.6rem;
+            box-shadow:
+                inset 0 0 0 1px #605a6e55,
+                inset 0 0 12px #0b0a0e,
+                0 20px 40px -12px #0a090c,
+                0 8px 24px #00000066;
+            backdrop-filter: blur(1px);
+            border: 1px solid #bda04933;
+            transition: box-shadow 0.2s;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        /* ----- playlist header (MY PLAYLIST) ----- */
+        .playlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #bda04955;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 3px #00000088;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .playlist-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #f6edd8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #f6edd8, #cfb991);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px #00000099);
+            line-height: 1.2;
+        }
+
+        /* ----- grid: ROUTINE · MOTIVE / CHILL · FOCUS ----- */
+        .mood-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            background: #1f1d2680;
+            padding: 1rem;
+            border-radius: 1.8rem;
+            backdrop-filter: blur(3px);
+            border: 1px solid #bda04933;
+            box-shadow: inset 0 0 20px #00000055, 0 6px 10px #00000044;
+            margin-bottom: 1.6rem;
+        }
+
+        /* ----- each category column ----- */
+        .category {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #f6edd8;
+            text-shadow: 0 2px 2px #00000099;
+            padding: 0.2rem 0.5rem;
+            border-radius: 40px;
+            background: #bda04933;
+            border-left: 2px solid #bda04988;
+            border-right: 2px solid #bda04988;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
+            font-size: clamp(1rem, 3.5vw, 1.4rem);
+        }
+
+        /* ----- individual song items ----- */
+        .song-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 30px;
+            background: #2f2c3a55;
+            border: 1px solid #bda04922;
+            transition: all 0.2s;
+            color: #e7dec9;
+            font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+            font-style: italic;
+            text-shadow: 0 1px 2px #00000077;
+            min-height: 36px;
+            cursor: default;
+        }
+
+        .song-item .song-name {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: clamp(0.7rem, 2.2vw, 0.9rem);
+        }
+
+        .song-item .song-duration {
+            font-size: clamp(0.6rem, 2vw, 0.75rem);
+            opacity: 0.6;
+            font-weight: 300;
+            flex-shrink: 0;
+        }
+.playing {
+    background: #bda04922;
+    border-color: #bda04966;
+}
+      
+
+        /* ===== responsive fine-tuning ===== */
+        @media (max-width: 480px) {
+            body {
+                padding: 0.4rem;
+            }
+
+            .playlist-card {
+                padding: 0.8rem 0.6rem 1.2rem;
+                border-radius: 1.4rem;
+            }
+
+            .playlist-header h1 {
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+            }
+
+            .mood-grid {
+                gap: 0.7rem;
+                padding: 0.7rem;
+                border-radius: 1.2rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .category {
+                gap: 0.3rem;
+            }
+
+            .category-title {
+                font-size: 1rem;
+                padding: 0.15rem 0.4rem;
+            }
+
+            .song-item {
+                padding: 0.25rem 0.5rem;
+                min-height: 32px;
+                gap: 0.3rem;
+                border-radius: 20px;
+            }
+
+            .song-item .song-name {
+                font-size: 0.7rem;
+            }
+
+            .song-item .song-duration {
+                font-size: 0.55rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .playlist-header h1 {
+                font-size: 1.1rem;
+            }
+
+            .mood-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+                padding: 0.5rem;
+            }
+
+            .category-title {
+                font-size: 0.85rem;
+            }
+
+            .song-item {
+                padding: 0.2rem 0.4rem;
+                min-height: 28px;
+            }
+
+            .song-item .song-name {
+                font-size: 0.6rem;
+            }
+
+            .song-item .song-duration {
+                font-size: 0.5rem;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .playlist-card {
+                padding: 2rem 2.5rem 2.8rem;
+            }
+
+            .mood-grid {
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .category-title {
+                font-size: 1.4rem;
+            }
+
+            .song-item {
+                font-size: 0.95rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        /* footer */
+        .footer-note {
+            text-align: center;
+            margin-top: 1.2rem;
+            font-size: clamp(0.55rem, 2vw, 0.7rem);
+            letter-spacing: 2px;
+            color: #bda04966;
+            font-style: italic;
+            border-top: 1px solid #bda04922;
+            padding-top: 0.6rem;
+        }

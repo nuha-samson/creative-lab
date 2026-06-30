@@ -5,722 +5,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>my playlist · chill focus</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #1e1c22;
-            font-family: 'Garamond', 'Times New Roman', serif;
-            padding: 0.75rem;
-        }
-
-        /* ----- card / playlist surface ----- */
-        .playlist-card {
-            background: #2b2933;
-            background-image: radial-gradient(circle at 20% 30%, #3d3a47 0%, #1f1d26 100%);
-            padding: 1.2rem 1rem 1.8rem;
-            border-radius: 2rem 2rem 1.6rem 1.6rem;
-            box-shadow:
-                inset 0 0 0 1px #605a6e55,
-                inset 0 0 12px #0b0a0e,
-                0 20px 40px -12px #0a090c,
-                0 8px 24px #00000066;
-            backdrop-filter: blur(1px);
-            border: 1px solid #bda04933;
-            transition: box-shadow 0.2s;
-            max-width: 700px;
-            width: 100%;
-        }
-
-        /* ----- playlist header (MY PLAYLIST) ----- */
-        .playlist-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-bottom: 2px solid #bda04955;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.2rem;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 3px #00000088;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-        }
-
-        .playlist-header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            font-style: italic;
-            color: #f6edd8;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, #f6edd8, #cfb991);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 4px #00000099);
-            line-height: 1.2;
-        }
-
-        /* ----- grid: ROUTINE · MOTIVE / CHILL · FOCUS ----- */
-        .mood-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            background: #1f1d2680;
-            padding: 1rem;
-            border-radius: 1.8rem;
-            backdrop-filter: blur(3px);
-            border: 1px solid #bda04933;
-            box-shadow: inset 0 0 20px #00000055, 0 6px 10px #00000044;
-            margin-bottom: 1.6rem;
-        }
-
-        /* ----- each category column ----- */
-        .category {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .category-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            font-style: italic;
-            color: #f6edd8;
-            text-shadow: 0 2px 2px #00000099;
-            padding: 0.2rem 0.5rem;
-            border-radius: 40px;
-            background: #bda04933;
-            border-left: 2px solid #bda04988;
-            border-right: 2px solid #bda04988;
-            text-align: center;
-            letter-spacing: 1px;
-            margin-bottom: 0.2rem;
-            font-size: clamp(1rem, 3.5vw, 1.4rem);
-        }
-
-        /* ----- individual song items ----- */
-        .song-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.3rem 0.6rem;
-            border-radius: 30px;
-            background: #2f2c3a55;
-            border: 1px solid #bda04922;
-            transition: all 0.2s;
-            cursor: pointer;
-            color: #e7dec9;
-            font-size: clamp(0.75rem, 2.5vw, 0.95rem);
-            font-style: italic;
-            text-shadow: 0 1px 2px #00000077;
-            min-height: 36px;
-        }
-
-        .song-item:active {
-            background: #bda04944;
-            transform: scale(0.97);
-        }
-
-        .song-item .song-icon {
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
-            opacity: 0.7;
-            flex-shrink: 0;
-        }
-
-        .song-item .song-name {
-            flex: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: clamp(0.7rem, 2.2vw, 0.9rem);
-        }
-
-        .song-item .song-duration {
-            font-size: clamp(0.6rem, 2vw, 0.75rem);
-            opacity: 0.6;
-            font-weight: 300;
-            flex-shrink: 0;
-        }
-
-        .song-item .play-indicator {
-            font-size: 0.65rem;
-            opacity: 0.5;
-            flex-shrink: 0;
-            transition: opacity 0.2s;
-        }
-
-        /* ----- button wrapper (center) ----- */
-        .button-wrapper {
-            display: flex;
-            justify-content: center;
-            margin-top: 0.2rem;
-        }
-
-        /* ===== BUTTON – responsive ===== */
-        .btn {
-            cursor: pointer;
-            position: relative;
-            width: min(160px, 60vw);
-            height: clamp(44px, 10vw, 52px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            border: solid 2px #bda049;
-            border-style: outset;
-            background-color: #37363e;
-            overflow: visible;
-            box-shadow:
-                inset 1px 1px 3px #0002,
-                inset 2px 2px 6px #0002,
-                inset 4px 4px 12px #0002,
-                inset 6px 6px 24px #0002,
-                1px 1px 2px 0px #000,
-                1px 1px 3px 0px #fff6,
-                2px 2px 4px 1px #fb02,
-                -1px -1px 2px -1px #000,
-                -2px -2px 4px 1px #000;
-            transition: box-shadow 0.1s, transform 0.1s;
-            flex-shrink: 0;
-            touch-action: manipulation;
-        }
-
-        .btn:focus-visible {
-            outline: 2px solid #bda049;
-            outline-offset: 4px;
-        }
-
-        .fabric {
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: inherit;
-            filter: url(#linen);
-            pointer-events: none;
-        }
-
-        .btn::before {
-            content: "";
-            position: absolute;
-            inset: -18px;
-            border-radius: 14px;
-            background-color: rgb(24, 26, 26);
-            filter: url(#bump);
-            z-index: -1;
-        }
-
-        .btn::after {
-            content: "";
-            position: absolute;
-            inset: -19px;
-            border-radius: 15px;
-            border: 1px solid #0004;
-            border-bottom-color: #0008;
-            box-shadow:
-                inset 1px 1px 1px #ffc6,
-                inset 1px 3px 3px #ffc6,
-                inset 1px 5px 5px #0006,
-                inset 1px 7px 7px #0006,
-                0 4px 6px -3px #0004,
-                0 12px 8px -8px #0007;
-            z-index: -1;
-        }
-
-        .txt {
-            position: absolute;
-            z-index: 2;
-            color: white;
-            font-family: Garamond, serif;
-            font-size: clamp(1.2rem, 5vw, 1.5em);
-            font-weight: bold;
-            font-style: italic;
-            text-shadow: 0 1px 1px #555;
-            transition: opacity 300ms ease;
-            opacity: 1;
-            user-select: none;
-        }
-
-        .txt:nth-child(3) {
-            opacity: 0;
-        }
-
-        .filter {
-            position: absolute;
-            width: 0;
-            height: 0;
-            pointer-events: none;
-        }
-
-        .shadow {
-            z-index: -2;
-            position: absolute;
-            bottom: -36px;
-            width: 120%;
-            height: 12px;
-            background: linear-gradient(to bottom, #000, 50%, #0000);
-            filter: blur(7px);
-            opacity: 0.25;
-            transition:
-                opacity 300ms ease,
-                transform 300ms ease;
-        }
-
-        .shadow::before {
-            content: "";
-            position: absolute;
-            inset: -4px;
-            background-color: #00000015;
-        }
-
-        .shadow.left {
-            background-color: #aa001555;
-            transform: skewX(-70deg) translateX(-18px);
-        }
-
-        .shadow.right {
-            transform: skewX(70deg) translateX(18px) scaleY(1);
-        }
-
-        .light {
-            position: absolute;
-            left: 20%;
-            top: -32px;
-            width: 150px;
-            height: 48px;
-            border-radius: 50%;
-            background-color: #fa5;
-            filter: blur(24px);
-            z-index: 1;
-            mix-blend-mode: color-dodge;
-            opacity: 0;
-            transition: opacity 300ms ease;
-            pointer-events: none;
-        }
-
-        .dot {
-            position: absolute;
-            top: -11px;
-            right: 0px;
-            width: 6px;
-            height: 4px;
-            border-radius: 1px;
-            border: 1px solid #fff5;
-            box-shadow:
-                0 0 1px 0px rgba(255, 42, 9, 0),
-                0 0 6px 0px rgba(255, 42, 9, 0),
-                0 0 12px 1px rgba(255, 42, 9, 0);
-            background-color: #fff1;
-            transition: box-shadow 0.2s, background-color 0.2s;
-        }
-
-        /* hover effects (desktop) */
-        @media (hover: hover) {
-            .song-item:hover {
-                background: #bda04933;
-                border-color: #bda04988;
-                transform: translateX(4px);
-            }
-
-            .song-item:hover .play-indicator {
-                opacity: 0.7;
-            }
-
-            .btn:hover .light {
-                opacity: 0.5;
-            }
-
-            .btn:hover .shadow.left {
-                transform: skewX(-75deg) translateX(-34px);
-            }
-
-            .btn:hover .shadow.right {
-                transform: skewX(75deg) translateX(34px) scaleY(1.1);
-            }
-
-            .btn:hover .shadow {
-                opacity: 0.4;
-            }
-        }
-
-        /* active / touch feedback */
-        .song-item:active {
-            background: #bda04944;
-            transform: scale(0.96);
-        }
-
-        /* focus (play/stop toggle) */
-        .btn:focus .txt {
-            opacity: 0;
-        }
-
-        .btn:focus .txt:nth-child(3) {
-            opacity: 1;
-        }
-
-        .btn:focus .dot {
-            animation: pulse 1s ease infinite;
-        }
-
-        @keyframes pulse {
-            50% {
-                box-shadow:
-                    0 0 1px 0px rgba(255, 42, 9, 1),
-                    0 0 6px 0px rgba(255, 42, 9, 1),
-                    0 0 12px 1px rgba(255, 42, 9, 1);
-                background-color: rgb(255, 42, 9);
-            }
-        }
-
-        .btn:active {
-            transform: scale(0.95);
-            filter: brightness(0.93);
-            box-shadow: inset 0 4px 8px #00000088;
-        }
-
-        /* ===== RESPONSIVE: mobile first ===== */
-        @media (max-width: 480px) {
-            body {
-                padding: 0.4rem;
-            }
-
-            .playlist-card {
-                padding: 0.8rem 0.6rem 1.2rem;
-                border-radius: 1.4rem;
-            }
-
-            .playlist-header h1 {
-                font-size: 1.4rem;
-                letter-spacing: 1px;
-            }
-
-            .mood-grid {
-                gap: 0.7rem;
-                padding: 0.7rem;
-                border-radius: 1.2rem;
-                margin-bottom: 1.2rem;
-            }
-
-            .category {
-                gap: 0.3rem;
-            }
-
-            .category-title {
-                font-size: 1rem;
-                padding: 0.15rem 0.4rem;
-            }
-
-            .song-item {
-                padding: 0.25rem 0.5rem;
-                min-height: 32px;
-                gap: 0.3rem;
-                border-radius: 20px;
-            }
-
-            .song-item .song-name {
-                font-size: 0.7rem;
-            }
-
-            .song-item .song-duration {
-                font-size: 0.55rem;
-            }
-
-            .song-item .song-icon {
-                font-size: 0.7rem;
-            }
-
-            .song-item .play-indicator {
-                font-size: 0.55rem;
-            }
-
-            .btn {
-                height: 40px;
-                width: min(130px, 55vw);
-            }
-
-            .txt {
-                font-size: 1.1rem;
-            }
-
-            .shadow {
-                display: none;
-            }
-
-            .light {
-                width: 100px;
-                height: 30px;
-                top: -20px;
-                filter: blur(16px);
-            }
-
-            .btn::before {
-                inset: -12px;
-                border-radius: 10px;
-            }
-
-            .btn::after {
-                inset: -13px;
-                border-radius: 11px;
-            }
-
-            .dot {
-                top: -8px;
-                right: -2px;
-                width: 5px;
-                height: 3px;
-            }
-
-            footer {
-                font-size: 0.6rem;
-                margin-top: 1rem;
-                padding-top: 0.5rem;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .playlist-header h1 {
-                font-size: 1.1rem;
-            }
-
-            .mood-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-                padding: 0.5rem;
-            }
-
-            .category-title {
-                font-size: 0.85rem;
-            }
-
-            .song-item {
-                padding: 0.2rem 0.4rem;
-                min-height: 28px;
-            }
-
-            .song-item .song-name {
-                font-size: 0.6rem;
-            }
-
-            .song-item .song-duration {
-                font-size: 0.5rem;
-            }
-        }
-
-        @media (min-width: 600px) {
-            .playlist-card {
-                padding: 2rem 2.5rem 2.8rem;
-            }
-
-            .mood-grid {
-                gap: 1.5rem;
-                padding: 1.5rem;
-            }
-
-            .category-title {
-                font-size: 1.4rem;
-            }
-
-            .song-item {
-                font-size: 0.95rem;
-                padding: 0.4rem 0.8rem;
-            }
-        }
-
-        /* footer */
-        .footer-note {
-            text-align: center;
-            margin-top: 1.2rem;
-            font-size: clamp(0.55rem, 2vw, 0.7rem);
-            letter-spacing: 2px;
-            color: #bda04966;
-            font-style: italic;
-            border-top: 1px solid #bda04922;
-            padding-top: 0.6rem;
-        }
-    </style>
+<link rel="stylesheet" href="playList.css">
 </head>
 
 <body>
-
-    <!-- SVG filters (invisible) -->
-    <svg class="filter" aria-hidden="true">
-        <filter id="bump">
-            <feTurbulence result="noise" numOctaves="4" baseFrequency="0.678" type="fractalNoise"></feTurbulence>
-            <feSpecularLighting result="specular" lighting-color="#fffffa" specularExponent="15" specularConstant="0.7"
-                surfaceScale="0.22" in="noise">
-                <fePointLight z="210" y="-50" x="40"></fePointLight>
-            </feSpecularLighting>
-            <feComposite result="noise2" operator="in" in="specular" in2="SourceGraphic"></feComposite>
-            <feBlend mode="difference" in2="noise2" in="SourceGraphic" result="out"></feBlend>
-            <feBlend mode="overlay" in2="out" in="SourceGraphic"></feBlend>
-        </filter>
-    </svg>
-
-    <svg class="filter" aria-hidden="true">
-        <defs>
-            <filter id="linen">
-                <feTurbulence type="fractalNoise" baseFrequency="0.9 0.03" numOctaves="2" seed="8"
-                    result="verticalNoise"></feTurbulence>
-                <feTurbulence type="fractalNoise" baseFrequency="0.03 0.9" numOctaves="2" seed="12"
-                    result="horizontalNoise"></feTurbulence>
-                <feBlend in="verticalNoise" in2="horizontalNoise" mode="multiply" result="woven"></feBlend>
-                <feComponentTransfer in="woven" result="threadContrast">
-                    <feFuncR type="gamma" amplitude="1.3" exponent="2.4"></feFuncR>
-                    <feFuncG type="gamma" amplitude="1.3" exponent="2.4"></feFuncG>
-                    <feFuncB type="gamma" amplitude="1.3" exponent="2.4"></feFuncB>
-                </feComponentTransfer>
-                <feGaussianBlur in="threadContrast" stdDeviation="0.22" result="softThreads"></feGaussianBlur>
-                <feComposite in="softThreads" in2="SourceGraphic" operator="in" result="textureMask"></feComposite>
-                <feBlend in="SourceGraphic" in2="textureMask" mode="color-burn"></feBlend>
-            </filter>
-        </defs>
-    </svg>
 
     <!-- main playlist card -->
     <div class="playlist-card">
         <!-- header: MY PLAYLIST -->
         <div class="playlist-header">
-            <h1>🎵 MY PLAYLIST</h1>
+            <h1>MY PLAYLIST</h1>
         </div>
 
         <!-- grid: ROUTINE / MOTIVE · CHILL / FOCUS with song lists -->
         <div class="mood-grid">
             <!-- ROUTINE column -->
             <div class="category">
-                <div class="category-title">⚡ routine</div>
+                <div class="category-title">Routine</div>
                 <div class="song-item">
-                    <span class="song-icon">🎧</span>
-                    <span class="song-name">Morning Wake Up</span>
-                    <span class="song-duration">3:24</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Morning Azkar</span>
+                    <span class="song-duration">16:53</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎧</span>
-                    <span class="song-name">Daily Grind</span>
-                    <span class="song-duration">4:12</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Surah Yaseen</span>
+                    <span class="song-duration">12:29</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎧</span>
-                    <span class="song-name">Coffee Run</span>
-                    <span class="song-duration">2:58</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Surah Mulk</span>
+                    <span class="song-duration">5:25</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎧</span>
-                    <span class="song-name">Sunset Drive</span>
-                    <span class="song-duration">3:45</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Evening Azkar</span>
+                    <span class="song-duration">16:24</span>
                 </div>
             </div>
 
             <!-- CHILL column -->
             <div class="category">
-                <div class="category-title">🌊 chill</div>
+                <div class="category-title">Chill</div>
                 <div class="song-item">
-                    <span class="song-icon">🎵</span>
-                    <span class="song-name">Lofi Dreams</span>
-                    <span class="song-duration">2:15</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Kun anta</span>
+                    <span class="song-duration">4:34</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎵</span>
-                    <span class="song-name">Midnight Rain</span>
-                    <span class="song-duration">3:02</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Assalamumu Alaykum</span>
+                    <span class="song-duration">4:29</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎵</span>
-                    <span class="song-name">Ocean Waves</span>
-                    <span class="song-duration">4:30</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Heya Heya</span>
+                    <span class="song-duration">3:20</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎵</span>
-                    <span class="song-name">Jazz & Chill</span>
-                    <span class="song-duration">3:18</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Medina</span>
+                    <span class="song-duration">4:09</span>
+                </div>
+                <div class="song-item">
+                    <span class="song-name">Living Life</span>
+                    <span class="song-duration">3:14</span>
                 </div>
             </div>
 
             <!-- MOTIVE column -->
             <div class="category">
-                <div class="category-title">🔥 motive</div>
+                <div class="category-title">Motive</div>
                 <div class="song-item">
-                    <span class="song-icon">🎶</span>
-                    <span class="song-name">Rise Up</span>
-                    <span class="song-duration">3:56</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Paradaise</span>
+                    <span class="song-duration">5:03</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎶</span>
-                    <span class="song-name">Workout Anthem</span>
-                    <span class="song-duration">4:02</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Worth It</span>
+                    <span class="song-duration">4:36</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎶</span>
-                    <span class="song-name">No Limits</span>
-                    <span class="song-duration">3:30</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Hawel Mera Okhra</span>
+                    <span class="song-duration">3:27</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎶</span>
-                    <span class="song-name">Victory Lap</span>
-                    <span class="song-duration">4:15</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Be Curious</span>
+                    <span class="song-duration">3:38</span>
                 </div>
             </div>
 
             <!-- FOCUS column -->
             <div class="category">
-                <div class="category-title">🎯 focus</div>
+                <div class="category-title">Focus</div>
                 <div class="song-item">
-                    <span class="song-icon">🎼</span>
-                    <span class="song-name">Deep Work</span>
-                    <span class="song-duration">5:20</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Deep Work 1</span>
+                    <span class="song-duration">1:05:06</span>
                 </div>
                 <div class="song-item">
-                    <span class="song-icon">🎼</span>
-                    <span class="song-name">Study Session</span>
-                    <span class="song-duration">4:45</span>
-                    <span class="play-indicator">▶</span>
-                </div>
-                <div class="song-item">
-                    <span class="song-icon">🎼</span>
-                    <span class="song-name">Flow State</span>
-                    <span class="song-duration">3:55</span>
-                    <span class="play-indicator">▶</span>
-                </div>
-                <div class="song-item">
-                    <span class="song-icon">🎼</span>
-                    <span class="song-name">Mind Palace</span>
-                    <span class="song-duration">4:10</span>
-                    <span class="play-indicator">▶</span>
+                    <span class="song-name">Deep Work 2</span>
+                    <span class="song-duration">1:05:06</span>
                 </div>
             </div>
-        </div>
-
-        <!-- button with all the fabric + shadows + dot -->
-        <div class="button-wrapper">
-            <button class="btn" aria-label="Play or stop">
-                <div class="fabric"></div>
-                <span class="txt">Play</span>
-                <span class="txt">Stop</span>
-                <div class="shadow left"></div>
-                <div class="shadow right"></div>
-                <div class="dot"></div>
-                <div class="light"></div>
-            </button>
         </div>
 
         <!-- footer -->
@@ -729,8 +106,24 @@
         </div>
     </div>
 
-    <audio id="player" style="display:none;"></audio>
-
+    <!-- Audio elements with your files (hidden, just for reference) -->
+    <div style="display: none;">
+        <audio id="audio-morning" src="music/Morning Adhkar.mp3"></audio>
+        <audio id="audio-yaseen" src="music/Surah Yasin.mp3"></audio>
+        <audio id="audio-mulk" src="music/Surah Al-Mulk.mp3"></audio>
+        <audio id="audio-evening" src="music/Evening Adhkar.mp3"></audio>
+        <audio id="audio-kun" src="music/chill.mp3"></audio>
+        <audio id="audio-assalam" src="music/chill1.mp3"></audio>
+        <audio id="audio-heya" src="music/chill2.mp3"></audio>
+        <audio id="audio-medina" src="music/chill3.mp3"></audio>
+        <audio id="audio-living" src="music/Harris j - living life (lyrics).mp3"></audio>
+        <audio id="audio-paradise" src="music/motive.mp3"></audio>
+        <audio id="audio-worth" src="music/motive1.mp3"></audio>
+        <audio id="audio-hawel" src="music/motive2.mp3"></audio>
+        <audio id="audio-curious" src="music/motive3.mp3"></audio>
+        <audio id="audio-deep1" src="music/Focus1.mp3"></audio>
+    </div>
+<script src="playList.js"></script>
 </body>
 
 </html>

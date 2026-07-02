@@ -1,4 +1,4 @@
-# Creative Lab 🧪✨
+# Creative Lab ✨
 
 Welcome to my Creative Lab! This is basically just a sandbox where I mess around with code, try out new ideas, and actually build stuff instead of just reading about it.
 
@@ -27,11 +27,11 @@ This list changes all the time because I'm constantly trying new things, but mos
 
 - HTML / CSS / JavaScript
 - Git & GitHub
-- ...and whatever else I stumble across
+- ...and whatever language I stumble across
 
 ## 📂 The Projects
 
-Everything is organized into folders. Each one is its own little world with its own goal and structure. 
+Everything here are used by me. I am building tools for myself.
 
 I'll be adding more as I go! 🚀
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPA Calculator</title>
+<link rel="stylesheet" href="GPAcalculator.css">
+</head>
+
+<body>
+
+    <div class="brutalist-card">
+
+        <!-- HEADER -->
+        <div class="brutalist-card__alert">GPA · Calculator</div>
+
+        <!-- SUBJECT LIST -->
+        <div class="subject-list" id="subjectListContainer">
+            <div class="subject-list__title">
+                 Subjects
+             <!-- <span id="subjectCounter">1</span> -->
+            </div>
+
+            <!-- Example Subject Row (will be managed by JS) -->
+            <div class="subject-row" data-index="0">
+                <div class="subject-row__field">
+                    <label>Credits</label>
+                    <input type="number" class="input-credits" value="3" min="1" max="4" step="1" />
+                </div>
+                <div class="subject-row__field">
+                    <label>Grade</label>
+                    <input type="number" class="input-grade" value="4.0" min="0" max="4" step="0.1" />
+                </div>
+                <button class="btn btn--warning btn--icon btn-update" title="Update subjects">⟳</button>
+                <button class="btn btn--success btn--icon btn-add" title="Add subject">＋</button>
+                <button class="btn btn--danger btn--icon btn-remove" title="Remove subject">✕</button>
+            </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="brutalist-actions">
+            <button class="btn btn--primary" id="calculateBtn">Result</button>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="brutalist-summary" id="summaryBlock">
+            <div class="brutalist-summary__item">
+                Total Credits <span id="totalCreditsDisplay">0</span>
+            </div>
+            <div class="brutalist-summary__item brutalist-summary__item--big brutalist-summary__item--gpa">
+                GPA <span id="gpaDisplay">0.00</span>
+            </div>
+            <div class="brutalist-summary__item" style="margin-left:auto;">
+                Subjects <span id="subjectCountDisplay">0</span>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">✦ GPA Calculator  ✦</div>
+
+    </div>
+
+
+    <script src="GPAcalculator.js">
+    </script>
+
+</body>
+
+</html>

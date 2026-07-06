@@ -1,0 +1,405 @@
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #111;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Arial", "Helvetica", sans-serif;
+            padding: 1.5rem;
+        }
+
+        /* ----- BRUTALIST CARD ----- */
+        .brutalist-card {
+            width: 100%;
+            max-width: 760px;
+            border: 4px solid #fff;
+            background-color: #000;
+            padding: 2rem 2rem 2.5rem;
+            box-shadow: 14px 14px 0 #fff;
+            transition: box-shadow 0.15s ease;
+        }
+
+        .brutalist-card__alert {
+            font-weight: 900;
+            color: #fff;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #fff;
+            padding-bottom: 0.75rem;
+        }
+
+        /* ----- FORM ELEMENTS ----- */
+        .brutalist-form__label {
+            display: block;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+            border-left: 6px solid #fff;
+            padding-left: 0.75rem;
+        }
+
+        .brutalist-form__input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #000;
+            border: 3px solid #fff;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 5px 5px 0 #fff;
+            transition: all 0.1s ease;
+            outline: none;
+            font-family: "Arial", sans-serif;
+        }
+
+        .brutalist-form__input:focus {
+            background: #111;
+            box-shadow: 3px 3px 0 #fff;
+            transform: translate(2px, 2px);
+        }
+
+        /* ----- SUBJECT LIST ----- */
+        .subject-list {
+            margin: 1.5rem 0;
+            border-top: 3px solid #fff;
+            padding-top: 1.5rem;
+        }
+
+        .subject-list__title {
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .subject-list__title span {
+            background: #fff;
+            color: #000;
+            padding: 0.1rem 0.8rem;
+            font-size: 1rem;
+        }
+
+        /* ----- SUBJECT ROW ----- */
+        .subject-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1rem;
+            background: #0a0a0a;
+            padding: 1rem 0.8rem;
+            margin-bottom: 0.8rem;
+            border: 2px solid #fff;
+            box-shadow: 4px 4px 0 #fff;
+            align-items: flex-end;
+            transition: all 0.15s ease;
+        }
+
+        .subject-row__field {
+            flex: 1 1 120px;
+            min-width: 100px;
+        }
+
+        .subject-row__field label {
+            display: block;
+            color: #ccc;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.2rem;
+        }
+
+        .subject-row__field input {
+            width: 100%;
+            padding: 0.5rem 0.6rem;
+            background: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 3px 3px 0 #fff;
+            transition: 0.1s ease;
+            outline: none;
+            font-family: "Arial", sans-serif;
+        }
+
+        .subject-row__field input:focus {
+            background: #111;
+            box-shadow: 1px 1px 0 #fff;
+            transform: translate(2px, 2px);
+        }
+
+        /* ----- BUTTONS (Reusable) ----- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 3px solid #fff;
+            background-color: #000;
+            color: #fff;
+            box-shadow: 5px 5px 0 #fff;
+            cursor: pointer;
+            font-family: "Arial", sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.15s ease;
+            height: 42px;
+            min-width: 44px;
+        }
+
+        .btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #fff;
+        }
+
+        .btn:active {
+            transform: translate(5px, 5px) !important;
+            box-shadow: none !important;
+        }
+
+        /* Button variants */
+        .btn--primary {
+            background-color: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        .btn--primary:hover {
+            background-color: #296fbb;
+            border-color: #296fbb;
+            color: #000;
+            box-shadow: 7px 7px 0 #004280;
+        }
+
+        .btn--danger {
+            border-color: #ff4444;
+            color: #ff4444;
+            box-shadow: 5px 5px 0 #ff4444;
+        }
+
+        .btn--danger:hover {
+            background-color: #ff0000;
+            border-color: #ff0000;
+            color: #000;
+            box-shadow: 7px 7px 0 #800000;
+        }
+
+        .btn--success {
+            border-color: #1eff00;
+            color: #1eff00;
+            box-shadow: 3px 3px 0 #1eff00;
+        }
+
+        .btn--success:hover {
+            background-color: #48ff00;
+            border-color: #48ff00;
+            color: #000;
+            box-shadow: 5px 5px 0 #3bcc02;
+        }
+
+        .btn--warning {
+            border-color: #ffee00;
+            color: #ffee00;
+            box-shadow: 3px 3px 0 #ffee00;
+        }
+
+        .btn--warning:hover {
+            background-color: #ffee00;
+            border-color: #ffee00;
+            color: #000;
+            box-shadow: 5px 5px 0 #ddce02;
+        }
+
+        .btn--outline {
+            background: transparent;
+            border-color: #fff;
+            color: #fff;
+            box-shadow: 5px 5px 0 #fff;
+        }
+
+        .btn--outline:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn--icon {
+            padding: 0.5rem 0.9rem;
+            font-size: 1.3rem;
+            line-height: 1;
+            min-width: 44px;
+        }
+
+        /* ----- ACTIONS BAR ----- */
+        .brutalist-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            border-top: 3px solid #fff;
+            padding-top: 1.8rem;
+        }
+
+        .brutalist-actions .btn {
+            flex: 1 1 auto;
+        }
+
+        /* ----- SUMMARY ----- */
+        .brutalist-summary {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            background: #0c0c0c;
+            padding: 1.2rem 1.5rem;
+            border: 3px solid #fff;
+            box-shadow: 6px 6px 0 #fff;
+            align-items: center;
+        }
+
+        .brutalist-summary__item {
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .brutalist-summary__item span {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            padding: 0.1rem 1rem;
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+            border: 2px solid #000;
+            box-shadow: 2px 2px 0 #000;
+            min-width: 3rem;
+            text-align: center;
+        }
+
+        .brutalist-summary__item--big span {
+            font-size: 2rem;
+            padding: 0.1rem 1.2rem;
+            min-width: 4rem;
+        }
+
+        .brutalist-summary__item--gpa span {
+            background: #296fbb;
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 3px 3px 0 #fff;
+        }
+
+        .footer-note {
+            color: #555;
+            font-size: 0.7rem;
+            text-align: right;
+            margin-top: 1.5rem;
+            border-top: 1px solid #333;
+            padding-top: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 650px) {
+            .brutalist-card {
+                padding: 1.5rem;
+                box-shadow: 8px 8px 0 #fff;
+            }
+
+            .brutalist-card__alert {
+                font-size: 1.5rem;
+            }
+
+            .subject-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.6rem;
+            }
+
+            .subject-row .btn {
+                align-self: flex-end;
+                width: 100%;
+            }
+
+            .brutalist-actions {
+                flex-direction: column;
+            }
+
+            .brutalist-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .brutalist-summary {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: stretch;
+            }
+
+            .brutalist-summary__item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .brutalist-summary__item--big span {
+                font-size: 1.6rem;
+                min-width: 3.5rem;
+            }
+
+            .brutalist-summary__item--gpa span {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .brutalist-card {
+                padding: 1rem;
+                box-shadow: 5px 5px 0 #fff;
+            }
+
+            .brutalist-card__alert {
+                font-size: 1.2rem;
+            }
+
+            .subject-row__field {
+                flex: 1 1 100%;
+                min-width: 80px;
+            }
+
+            .btn {
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+                height: 38px;
+            }
+        }
+
+        /* ----- EMPTY STATE ----- */
+        .empty-state {
+            color: #666;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px dashed #444;
+        }
